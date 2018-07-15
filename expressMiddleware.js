@@ -1,6 +1,7 @@
 const express = require('express');
 const  hbs = require('hbs');
 const fs = require('fs')
+const port = process.env.PORT || 8079;
 
 var app = express();
 
@@ -23,9 +24,9 @@ app.use((req, res, next) => {                               //middleware example
     next();
 });
 
-app.use((req, res, next)=>{             //middleware example: goes to maintence page
-    res.render('maintenance.hbs');
-});
+// app.use((req, res, next)=>{             //middleware example: goes to maintence page
+//     res.render('maintenance.hbs');
+// });
 
 
 hbs.registerHelper('getCurrentYear', ()=>{  //function without an argument
@@ -52,6 +53,6 @@ app.get('/', (req, res) => {
 
 app.use(express.static(__dirname + '/public'));
 
-app.listen(8079, ()=>{
-    console.log('Server is up on  port 8079')
+app.listen(port, ()=>{
+    console.log(`Server is up on  port ${port}`)
 });
